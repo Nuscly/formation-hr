@@ -1,0 +1,13 @@
+acme_demo_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AcmeDemoBundle:Default:index }
+
+acme_demo_home:
+    path:     /home
+    defaults: { _controller: AcmeDemoBundle:Default:homepage }
+
+
+# src/Acme/DemoBundle/Resources/config/routing.yml
+random:
+    path:     /random/{limit}
+    defaults: { _controller: AcmeDemoBundle:Random:index }

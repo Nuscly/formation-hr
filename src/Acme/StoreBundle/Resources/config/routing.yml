@@ -1,0 +1,7 @@
+acme_store_create:
+    path:     /product/create
+    defaults: { _controller: AcmeStoreBundle:Default:create }
+
+acme_store_show:
+    path:     /product/show/{id}
+    defaults: { _controller: AcmeStoreBundle:Default:show }
