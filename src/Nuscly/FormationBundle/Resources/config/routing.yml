@@ -1,0 +1,39 @@
+formation_organization:
+    resource: "@FormationBundle/Resources/config/routing/organization.yml"
+    prefix:   /organization
+
+formation_training-session:
+    resource: "@FormationBundle/Resources/config/routing/trainingsession.yml"
+    prefix:   /training-session
+
+formation_training-plan:
+    resource: "@FormationBundle/Resources/config/routing/trainingplan.yml"
+    prefix:   /training-plan
+
+formation_training:
+    resource: "@FormationBundle/Resources/config/routing/training.yml"
+    prefix:   /training
+
+formation_employee:
+    resource: "@FormationBundle/Resources/config/routing/employee.yml"
+    prefix:   /employee
+
+formation_department:
+    resource: "@FormationBundle/Resources/config/routing/department.yml"
+    prefix:   /department
+
+formation_homepage:
+    path:     /
+    defaults: { _controller: FormationBundle:Default:index }
+
+formation_employee_create:
+    path:     /employees/create
+    defaults: { _controller: FormationBundle:Default:createEmployee }
+
+formation_employee_list:
+        path:     /employees/list
+        defaults: { _controller: FormationBundle:Default:listEmployee }
+
+formation_employee_edit:
+        path:     /employees/edit
+        defaults: { _controller: FormationBundle:Default:editEmployee }

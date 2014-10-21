@@ -21,7 +21,7 @@ class AppKernel extends Kernel
             new Braincrafted\Bundle\BootstrapBundle\BraincraftedBootstrapBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new Formation\FormationBundle\FormationBundle(),
+            new Nuscly\FormationBundle\FormationBundle(),
             new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
         );
 
