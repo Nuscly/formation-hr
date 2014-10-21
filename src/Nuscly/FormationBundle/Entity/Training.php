@@ -78,6 +78,12 @@ class Training
      **/
     private $employee;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Organization")
+     * @ORM\JoinColumn(name="organization_id", referencedColumnName="id")
+     **/
+    private $organization;
+
 
     public function __construct() {
         $this->stateRequests = new ArrayCollection();
@@ -333,4 +339,22 @@ class Training
     {
         return $this->employee;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getOrganization()
+    {
+        return $this->organization;
+    }
+
+    /**
+     * @param mixed $organization
+     */
+    public function setOrganization($organization)
+    {
+        $this->organization = $organization;
+    }
+
+
 }

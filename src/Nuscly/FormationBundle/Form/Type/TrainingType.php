@@ -21,6 +21,7 @@ class TrainingType extends AbstractType
             ->add('deadline')
             ->add('typology')
             ->add('employee')
+            ->add('organization')
         ;
     }
 

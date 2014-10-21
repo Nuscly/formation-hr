@@ -21,6 +21,7 @@ class TrainingFilterType extends AbstractType
             ->add('deadline', 'filter_date')
             ->add('typology', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\Typology'))
             ->add('employee', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\Employee'))
+            ->add('organization', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\Organization'))
         ;
     }
 

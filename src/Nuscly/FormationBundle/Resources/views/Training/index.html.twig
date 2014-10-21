@@ -33,6 +33,7 @@
                 <th scope="col">{{ thead('training', 'employee', 'Employee') }}</th>
                 <th scope="col">{{ thead('training', 'title', 'Title') }}</th>
                 <th scope="col">{{ thead('training', 'domain', 'Domain') }}</th>
+                <th scope="col">{{ thead('training', 'organization', 'Organization') }}</th>
                 <th scope="col">{{ thead('training', 'nextRetraining', 'Nextretraining') }}</th>
                 <th scope="col">{{ thead('training', 'deadline', 'Deadline') }}</th>
                 <th scope="col">{{ 'Actions'|trans({}, 'admin') }}</th>
@@ -46,6 +47,7 @@
                     <td>{{ training.employee }}</td>
                     <td>{{ training.title }}</td>
                     <td>{{ training.domain }}</td>
+                    <td>{{ training.organization }}</td>
                     <td>{% if training.nextRetraining %}{{ training.nextRetraining|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if training.deadline %}{{ training.deadline|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>
