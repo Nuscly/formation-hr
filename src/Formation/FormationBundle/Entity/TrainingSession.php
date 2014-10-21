@@ -3,6 +3,7 @@
 namespace Formation\FormationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * TrainingSession
@@ -48,7 +49,7 @@ class TrainingSession
 
     public function __construct()
     {
-        $this->trainingEvents = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->trainingEvents = new ArrayCollection();
     }
 
 

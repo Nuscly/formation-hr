@@ -1,3 +1,19 @@
+formation_department:
+    resource: "@FormationBundle/Resources/config/routing/department.yml"
+    prefix:   /department
+
 formation_homepage:
     path:     /
     defaults: { _controller: FormationBundle:Default:index }
+
+formation_employee_create:
+    path:     /employees/create
+    defaults: { _controller: FormationBundle:Default:createEmployee }
+
+formation_employee_list:
+        path:     /employees/list
+        defaults: { _controller: FormationBundle:Default:listEmployee }
+
+formation_employee_edit:
+        path:     /employees/edit
+        defaults: { _controller: FormationBundle:Default:editEmployee }

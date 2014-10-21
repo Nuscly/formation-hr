@@ -3,6 +3,7 @@
 namespace Formation\FormationBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Training
@@ -71,11 +72,18 @@ class Training
      **/
     private $statePlans;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Employee", inversedBy="trainings")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     **/
+    private $employee;
+
 
     public function __construct() {
         $this->stateRequests = new ArrayCollection();
         $this->stateTrainings = new ArrayCollection();
         $this->statePlans = new ArrayCollection();
+
     }
 
 
