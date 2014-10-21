@@ -1,0 +1,35 @@
+department:
+    pattern:  /
+    defaults: { _controller: "FormationBundle:Department:index" }
+
+department_sort:
+    pattern:  /{field}/{type}/sort
+    defaults: { _controller: "FormationBundle:Department:sort" }
+    requirements: { type: ASC|DESC }
+
+department_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FormationBundle:Department:show" }
+
+department_new:
+    pattern:  /new
+    defaults: { _controller: "FormationBundle:Department:new" }
+
+department_create:
+    pattern:  /create
+    defaults: { _controller: "FormationBundle:Department:create" }
+    requirements: { _method: post }
+
+department_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FormationBundle:Department:edit" }
+
+department_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FormationBundle:Department:update" }
+    requirements: { _method: post|put }
+
+department_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FormationBundle:Department:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,76 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ '%entity% list'|trans({'%entity%': 'Training'}, 'admin') }} - {{ parent() }}{% endblock %}
+{% macro thead(name, field, label) %}
+    {% spaceless %}
+        {% set sort = app.session.get('sort.' ~ name) %}
+        {% if sort and sort.field == field %}
+            {% if sort.type == 'DESC' %}
+                <a href="{{ path('training_sort', {field: field, type: 'ASC'}) }}">{{ label }} <i class="fa fa-sort-down"></i></a>
+            {% elseif sort.type == 'ASC' %}
+                <a href="{{ path('training_sort', {field: field, type: 'DESC'}) }}">{{ label }} <i class="fa fa-sort-up"></i></a>
+            {% endif %}
+        {% else %}
+            <a href="{{ path('training_sort', {field: field, type: 'ASC'}) }}">{{ label }} <i class="fa fa-sort"></i></a>
+        {% endif %}
+    {% endspaceless %}
+{% endmacro %}
+
+{% from _self import thead %}
+
+
+
+{% block body %}
+    <h1>{{ '%entity% list'|trans({'%entity%': 'Training'}, 'admin') }}</h1>
+
+    {% include 'FormationBundle:Training:filter.html.twig' with {form: form} %}
+    
+    <table class="table table-striped table-hover table-bordered records_list">
+        <thead>
+            <tr>
+                <th scope="col">{{ thead('training', 'id', 'Id') }}</th>
+                <th scope="col">{{ thead('training', 'department', 'Department') }}</th>
+                <th scope="col">{{ thead('training', 'employee', 'Employee') }}</th>
+                <th scope="col">{{ thead('training', 'title', 'Title') }}</th>
+                <th scope="col">{{ thead('training', 'domain', 'Domain') }}</th>
+                <th scope="col">{{ thead('training', 'nextRetraining', 'Nextretraining') }}</th>
+                <th scope="col">{{ thead('training', 'deadline', 'Deadline') }}</th>
+                <th scope="col">{{ 'Actions'|trans({}, 'admin') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for training in paginator %}
+                <tr>
+                    <td><a href="{{ path('training_show', {id: training.id}) }}">{{ training.id }}</a></td>
+                    <td>{{ training.employee.department.fullName }}</td>
+                    <td>{{ training.employee }}</td>
+                    <td>{{ training.title }}</td>
+                    <td>{{ training.domain }}</td>
+                    <td>{% if training.nextRetraining %}{{ training.nextRetraining|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if training.deadline %}{{ training.deadline|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" href="{{ path('training_show', {id: training.id}) }}">
+                                <i class="fa fa-file-o"></i> {{ 'show'|trans({}, 'admin') }}
+                            </a>
+                            <a class="btn btn-default btn-sm" href="{{ path('training_edit', {id: training.id}) }}">
+                                <i class="fa fa-edit"></i> {{ 'edit'|trans({}, 'admin') }}
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {{ knp_pagination_render(paginator) }}
+    
+    <ul class="new_entry list-unstyled">
+        <li>
+            <a class="btn btn-info" href="{{ path('training_new') }}">
+                <i class="fa fa-plus"></i> {{ 'Create a new entry'|trans({}, 'admin') }}
+            </a>
+        </li>
+    </ul>
+    
+{% endblock %}

@@ -1,0 +1,35 @@
+training-plan:
+    pattern:  /
+    defaults: { _controller: "FormationBundle:TrainingPlan:index" }
+
+training-plan_sort:
+    pattern:  /{field}/{type}/sort
+    defaults: { _controller: "FormationBundle:TrainingPlan:sort" }
+    requirements: { type: ASC|DESC }
+
+training-plan_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FormationBundle:TrainingPlan:show" }
+
+training-plan_new:
+    pattern:  /new
+    defaults: { _controller: "FormationBundle:TrainingPlan:new" }
+
+training-plan_create:
+    pattern:  /create
+    defaults: { _controller: "FormationBundle:TrainingPlan:create" }
+    requirements: { _method: post }
+
+training-plan_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FormationBundle:TrainingPlan:edit" }
+
+training-plan_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FormationBundle:TrainingPlan:update" }
+    requirements: { _method: post|put }
+
+training-plan_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FormationBundle:TrainingPlan:delete" }
+    requirements: { _method: post|delete }

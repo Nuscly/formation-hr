@@ -1,0 +1,35 @@
+employee:
+    pattern:  /
+    defaults: { _controller: "FormationBundle:Employee:index" }
+
+employee_sort:
+    pattern:  /{field}/{type}/sort
+    defaults: { _controller: "FormationBundle:Employee:sort" }
+    requirements: { type: ASC|DESC }
+
+employee_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FormationBundle:Employee:show" }
+
+employee_new:
+    pattern:  /new
+    defaults: { _controller: "FormationBundle:Employee:new" }
+
+employee_create:
+    pattern:  /create
+    defaults: { _controller: "FormationBundle:Employee:create" }
+    requirements: { _method: post }
+
+employee_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FormationBundle:Employee:edit" }
+
+employee_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FormationBundle:Employee:update" }
+    requirements: { _method: post|put }
+
+employee_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FormationBundle:Employee:delete" }
+    requirements: { _method: post|delete }

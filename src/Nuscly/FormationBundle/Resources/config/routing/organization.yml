@@ -1,0 +1,35 @@
+organization:
+    pattern:  /
+    defaults: { _controller: "FormationBundle:Organization:index" }
+
+organization_sort:
+    pattern:  /{field}/{type}/sort
+    defaults: { _controller: "FormationBundle:Organization:sort" }
+    requirements: { type: ASC|DESC }
+
+organization_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FormationBundle:Organization:show" }
+
+organization_new:
+    pattern:  /new
+    defaults: { _controller: "FormationBundle:Organization:new" }
+
+organization_create:
+    pattern:  /create
+    defaults: { _controller: "FormationBundle:Organization:create" }
+    requirements: { _method: post }
+
+organization_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FormationBundle:Organization:edit" }
+
+organization_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FormationBundle:Organization:update" }
+    requirements: { _method: post|put }
+
+organization_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FormationBundle:Organization:delete" }
+    requirements: { _method: post|delete }

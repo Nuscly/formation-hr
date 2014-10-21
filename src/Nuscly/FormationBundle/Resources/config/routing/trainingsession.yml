@@ -1,0 +1,35 @@
+training-session:
+    pattern:  /
+    defaults: { _controller: "FormationBundle:TrainingSession:index" }
+
+training-session_sort:
+    pattern:  /{field}/{type}/sort
+    defaults: { _controller: "FormationBundle:TrainingSession:sort" }
+    requirements: { type: ASC|DESC }
+
+training-session_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "FormationBundle:TrainingSession:show" }
+
+training-session_new:
+    pattern:  /new
+    defaults: { _controller: "FormationBundle:TrainingSession:new" }
+
+training-session_create:
+    pattern:  /create
+    defaults: { _controller: "FormationBundle:TrainingSession:create" }
+    requirements: { _method: post }
+
+training-session_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "FormationBundle:TrainingSession:edit" }
+
+training-session_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "FormationBundle:TrainingSession:update" }
+    requirements: { _method: post|put }
+
+training-session_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "FormationBundle:TrainingSession:delete" }
+    requirements: { _method: post|delete }
