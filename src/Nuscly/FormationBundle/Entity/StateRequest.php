@@ -108,7 +108,7 @@ class StateRequest
     /**
      * Set state
      *
-     * @param \Formation\FormationBundle\Entity\State $state
+     * @param \Nuscly\FormationBundle\Entity\State $state
      * @return StateRequest
      */
     public function setState(\Nuscly\FormationBundle\Entity\State $state = null)
@@ -121,7 +121,7 @@ class StateRequest
     /**
      * Get state
      *
-     * @return \Formation\FormationBundle\Entity\State 
+     * @return \Nuscly\FormationBundle\Entity\State 
      */
     public function getState()
     {
@@ -131,7 +131,7 @@ class StateRequest
     /**
      * Set training
      *
-     * @param \Formation\FormationBundle\Entity\Training $training
+     * @param \Nuscly\FormationBundle\Entity\Training $training
      * @return StateRequest
      */
     public function setTraining(\Nuscly\FormationBundle\Entity\Training $training = null)
@@ -144,10 +144,19 @@ class StateRequest
     /**
      * Get training
      *
-     * @return \Formation\FormationBundle\Entity\Training 
+     * @return \Nuscly\FormationBundle\Entity\Training 
      */
     public function getTraining()
     {
         return $this->training;
+    }
+
+
+    public function __toString()
+    {
+        if ($this->getState()!=NULL)
+            return $this->getState()->getName().' '.$this->getComment();
+        else
+            return $this->getComment();
     }
 }

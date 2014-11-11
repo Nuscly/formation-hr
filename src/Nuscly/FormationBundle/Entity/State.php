@@ -91,4 +91,11 @@ class State
     {
         return $this->classification;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+
 }

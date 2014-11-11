@@ -34,7 +34,10 @@
                 <th scope="col">{{ thead('training', 'title', 'Title') }}</th>
                 <th scope="col">{{ thead('training', 'domain', 'Domain') }}</th>
                 <th scope="col">{{ thead('training', 'organization', 'Organization') }}</th>
-                <th scope="col">{{ thead('training', 'nextRetraining', 'Nextretraining') }}</th>
+                <th scope="col">{{ thead('training', 'stateRequest', 'State request') }}</th>
+                <th scope="col">{{ thead('training', 'stateTraining', 'State training') }}</th>
+                <th scope="col">{{ thead('training', 'statePlan', 'State Plan') }}</th>
+                <th scope="col">{{ thead('training', 'nextRetraining', 'Next Retraining') }}</th>
                 <th scope="col">{{ thead('training', 'deadline', 'Deadline') }}</th>
                 <th scope="col">{{ 'Actions'|trans({}, 'admin') }}</th>
             </tr>
@@ -48,6 +51,19 @@
                     <td>{{ training.title }}</td>
                     <td>{{ training.domain }}</td>
                     <td>{{ training.organization }}</td>
+                    <td>
+                        <ul>
+                            {% for stateRequest in training.stateRequests %}
+                                <li>
+                                        {{ stateRequest }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+
+
+                    </td>
+                    <td></td>
+                    <td></td>
                     <td>{% if training.nextRetraining %}{{ training.nextRetraining|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if training.deadline %}{{ training.deadline|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>

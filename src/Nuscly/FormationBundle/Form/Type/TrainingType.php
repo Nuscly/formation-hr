@@ -14,20 +14,29 @@ class TrainingType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        
+            ->add('employee')
             ->add('title')
             ->add('domain')
+            ->add('organization')
+            ->add('typology')
             ->add('nextRetraining')
             ->add('deadline')
-            ->add('typology')
-            ->add('employee')
-            ->add('organization')
-        ;
-    }
+            ->add('stateRequests', 'bootstrap_collection', array(
+                'type'               => new StateRequestType(),
+                'allow_add'          => true,
+                'allow_delete'       => true,
+                'sub_widget_col'     => 9,
+                'button_col'         => 3,
+                'prototype_name'     => 'inlinep',
+                'options'            => array()
+                )
+            );
 
-    /**
-     * {@inheritdoc}
-     */
+}
+
+/**
+* {@inheritdoc}
+*/
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(

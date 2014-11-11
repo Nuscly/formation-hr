@@ -57,7 +57,7 @@ class Training
     private $typology;
 
     /**
-     * @ORM\OneToMany(targetEntity="StateRequest", mappedBy="training")
+     * @ORM\OneToMany(targetEntity="StateRequest", mappedBy="training", cascade={"persist"})
      * @ORM\OrderBy({"date" = "ASC"})
      **/
     private $stateRequests;
