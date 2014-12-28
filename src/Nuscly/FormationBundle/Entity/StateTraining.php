@@ -36,14 +36,14 @@ class StateTraining
     private $comment;
 
     /**
-     * @ORM\OneToOne(targetEntity="State")
+     * @ORM\ManyToOne(targetEntity="State")
      * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
      **/
     private $state;
 
     /**
      * @ORM\ManyToOne(targetEntity="Training", inversedBy="stateTrainings")
-     * @ORM\JoinColumn(name="training_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="training_id", referencedColumnName="id", nullable=false)
      **/
     private $training;
 
@@ -149,4 +149,13 @@ class StateTraining
     {
         return $this->training;
     }
+
+    public function __toString()
+    {
+        if ($this->getState()!=NULL)
+            return $this->getState()->getName().' '.$this->getComment();
+        else
+            return $this->getComment();
+    }
+
 }

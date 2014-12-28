@@ -259,9 +259,11 @@ class Training
      * @param \Nuscly\FormationBundle\Entity\StateTraining $stateTrainings
      * @return Training
      */
-    public function addStateTraining(\Nuscly\FormationBundle\Entity\StateTraining $stateTrainings)
+    public function addStateTraining(\Nuscly\FormationBundle\Entity\StateTraining $stateTraining)
     {
-        $this->stateTrainings[] = $stateTrainings;
+        $stateTraining->setTraining($this);
+
+        $this->stateTrainings->add($stateTraining);
 
         return $this;
     }
@@ -271,9 +273,9 @@ class Training
      *
      * @param \Nuscly\FormationBundle\Entity\StateTraining $stateTrainings
      */
-    public function removeStateTraining(\Nuscly\FormationBundle\Entity\StateTraining $stateTrainings)
+    public function removeStateTraining(\Nuscly\FormationBundle\Entity\StateTraining $stateTraining)
     {
-        $this->stateTrainings->removeElement($stateTrainings);
+        $this->stateTrainings->removeElement($stateTraining);
     }
 
     /**
@@ -292,9 +294,11 @@ class Training
      * @param \Nuscly\FormationBundle\Entity\StatePlan $statePlans
      * @return Training
      */
-    public function addStatePlan(\Nuscly\FormationBundle\Entity\StatePlan $statePlans)
+    public function addStatePlan(\Nuscly\FormationBundle\Entity\StatePlan $statePlan)
     {
-        $this->statePlans[] = $statePlans;
+        $statePlan->setTraining($this);
+
+        $this->statePlans->add($statePlan);
 
         return $this;
     }

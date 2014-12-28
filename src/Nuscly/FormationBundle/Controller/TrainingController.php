@@ -132,12 +132,6 @@ class TrainingController extends Controller
         $form = $this->createForm(new TrainingType(), $training);
         if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
-//
-//            foreach ($training->getStateRequests() as $stateRequest) {
-//                $em->persist($stateRequest);
-//                //$em->flush();
-//            }
-
             $em->persist($training);
             $em->flush();
 
@@ -187,15 +181,7 @@ class TrainingController extends Controller
             'method' => 'PUT',
         ));
         if ($editForm->handleRequest($request)->isValid()) {
-
-//            foreach ($training->getStateRequests() as $stateRequest) {
-//                $em->persist($stateRequest);
-//                //$em->flush();
-//            }
-//
-//            $em->persist($training);
             $em->flush();
-
             return $this->redirect($this->generateUrl('training_edit', array('id' => $training->getId())));
         }
         $deleteForm = $this->createDeleteForm($training->getId(), 'training_delete');

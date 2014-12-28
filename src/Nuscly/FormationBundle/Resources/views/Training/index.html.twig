@@ -55,15 +55,29 @@
                         <ul>
                             {% for stateRequest in training.stateRequests %}
                                 <li>
-                                        {{ stateRequest }}
+                                    {{ stateRequest }}
                                 </li>
                             {% endfor %}
                         </ul>
-
-
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <ul>
+                            {% for stateTraining in training.stateTrainings %}
+                                <li>
+                                    {{ stateTraining }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            {% for statePlan in training.statePlans %}
+                                <li>
+                                    {{ statePlan }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
                     <td>{% if training.nextRetraining %}{{ training.nextRetraining|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>{% if training.deadline %}{{ training.deadline|date('Y-m-d H:i:s') }}{% endif %}</td>
                     <td>

@@ -2,6 +2,7 @@
 
 namespace Nuscly\FormationBundle\Form\Type;
 
+use Nuscly\FormationBundle\Entity\StateTraining;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -30,6 +31,28 @@ class TrainingType extends AbstractType
                 'prototype_name'     => 'inlinep',
                 'by_reference'       => false,
                 'options'            => array()
+                )
+            )
+            ->add('stateTrainings', 'bootstrap_collection', array(
+                'type'               => new StateTrainingType(),
+                'allow_add'          => true,
+                'allow_delete'       => true,
+                'sub_widget_col'     => 9,
+                'button_col'         => 3,
+                'prototype_name'     => 'inlinep',
+                'by_reference'       => false,
+                'options'            => array()
+                )
+            )
+            ->add('statePlans', 'bootstrap_collection', array(
+                    'type'               => new StatePlanType(),
+                    'allow_add'          => true,
+                    'allow_delete'       => true,
+                    'sub_widget_col'     => 9,
+                    'button_col'         => 3,
+                    'prototype_name'     => 'inlinep',
+                    'by_reference'       => false,
+                    'options'            => array()
                 )
             );
 

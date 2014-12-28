@@ -36,7 +36,7 @@ class StatePlan
     private $comment;
 
     /**
-     * @ORM\OneToOne(targetEntity="State")
+     * @ORM\ManyToOne(targetEntity="State")
      * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
      **/
     private $state;
@@ -51,7 +51,7 @@ class StatePlan
 
     /**
      * @ORM\ManyToOne(targetEntity="TrainingPlan")
-     * @ORM\JoinColumn(name="training_plan_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="training_plan_id", referencedColumnName="id", nullable=false)
      **/
     private $trainingPlan;
 
@@ -151,7 +151,7 @@ class StatePlan
     /**
      * Get training
      *
-     * @return \Formation\FormationBundle\Entity\Training 
+     * @return \Formation\FormationBundle\Entity\Training
      */
     public function getTraining()
     {
@@ -173,4 +173,13 @@ class StatePlan
     {
         $this->trainingPlan = $trainingPlan;
     }
+
+    public function __toString()
+    {
+        if ($this->getState()!=NULL)
+            return $this->getTrainingPlan().' '.$this->getState()->getName();
+        else
+            return $this->getTrainingPlan();
+    }
+
 }
