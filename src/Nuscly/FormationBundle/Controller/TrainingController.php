@@ -2,6 +2,7 @@
 
 namespace Nuscly\FormationBundle\Controller;
 
+use Nuscly\FormationBundle\Entity\StateRequest;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -10,6 +11,7 @@ use Nuscly\FormationBundle\Form\Type\TrainingType;
 use Nuscly\FormationBundle\Form\Type\TrainingFilterType;
 use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\QueryBuilder;
+use DateTime;
 
 /**
  * Training controller.
@@ -64,6 +66,62 @@ class TrainingController extends Controller
         ));
     }
 
+
+    /**
+     * Displays a form to create a new Training entity.
+     *
+     */
+    public function testAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $training = new Training();
+        $training->setTitle("test training ".date('l'));
+        $training->setDomain("domain ".date('l'));
+        $training->setNextRetraining(new DateTime());
+        $training->setDeadline(new DateTime());
+
+        $em->persist($training);
+
+        $stateRequest = new StateRequest();
+        $stateRequest->setTraining($training);
+        $stateRequest->setState($em->find('\Nuscly\FormationBundle\Entity\State', 1));
+        $stateRequest->setComment("Comment ".date('l'));
+        $stateRequest->setDate(new DateTime());
+        $training->addStateRequest($stateRequest);
+
+        $stateRequest2 = new StateRequest();
+        $stateRequest2->setTraining($training);
+        $stateRequest2->setState($em->find('\Nuscly\FormationBundle\Entity\State', 2));
+        $stateRequest2->setComment("Comment ".date('l'));
+        $stateRequest2->setDate(new DateTime());
+        $training->addStateRequest($stateRequest2);
+
+        //$em->persist($training);
+
+        foreach ($training->getStateRequests() as $stateRequestIte) {
+            $em->persist($stateRequestIte);
+            //$em->flush();
+        }
+
+        //$em->persist($training);
+        $em->flush();
+
+
+
+        $editForm = $this->createForm(new TrainingType(), $training, array(
+            'action' => $this->generateUrl('training_update', array('id' => $training->getid())),
+            'method' => 'PUT',
+        ));
+        $deleteForm = $this->createDeleteForm($training->getId(), 'training_delete');
+
+        return $this->render('FormationBundle:Training:edit.html.twig', array(
+            'training' => $training,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
     /**
      * Creates a new Training entity.
      *
@@ -74,6 +132,12 @@ class TrainingController extends Controller
         $form = $this->createForm(new TrainingType(), $training);
         if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
+//
+//            foreach ($training->getStateRequests() as $stateRequest) {
+//                $em->persist($stateRequest);
+//                //$em->flush();
+//            }
+
             $em->persist($training);
             $em->flush();
 
@@ -89,6 +153,8 @@ class TrainingController extends Controller
     /**
      * Displays a form to edit an existing Training entity.
      *
+     * @param Training $training
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Training $training)
     {
@@ -108,15 +174,27 @@ class TrainingController extends Controller
     /**
      * Edits an existing Training entity.
      *
+     * @param Training $training
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function updateAction(Training $training, Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $editForm = $this->createForm(new TrainingType(), $training, array(
             'action' => $this->generateUrl('training_update', array('id' => $training->getid())),
             'method' => 'PUT',
         ));
         if ($editForm->handleRequest($request)->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+
+//            foreach ($training->getStateRequests() as $stateRequest) {
+//                $em->persist($stateRequest);
+//                //$em->flush();
+//            }
+//
+//            $em->persist($training);
+            $em->flush();
 
             return $this->redirect($this->generateUrl('training_edit', array('id' => $training->getId())));
         }
@@ -133,6 +211,10 @@ class TrainingController extends Controller
     /**
      * Save order.
      *
+     *
+     * @param $field
+     * @param $type
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function sortAction($field, $type)
     {

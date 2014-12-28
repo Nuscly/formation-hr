@@ -57,24 +57,24 @@ class Training
     private $typology;
 
     /**
-     * @ORM\OneToMany(targetEntity="StateRequest", mappedBy="training", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="StateRequest", mappedBy="training", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"date" = "ASC"})
      **/
     private $stateRequests;
     /**
-     * @ORM\OneToMany(targetEntity="StateTraining", mappedBy="training")
+     * @ORM\OneToMany(targetEntity="StateTraining", mappedBy="training", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"date" = "ASC"})
      **/
     private $stateTrainings;
     /**
-     * @ORM\OneToMany(targetEntity="StatePlan", mappedBy="training")
+     * @ORM\OneToMany(targetEntity="StatePlan", mappedBy="training", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"date" = "ASC"})
      **/
     private $statePlans;
 
     /**
      * @ORM\ManyToOne(targetEntity="Employee", inversedBy="trainings")
-     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="employee_id", referencedColumnName="id", nullable=false)
      **/
     private $employee;
 
@@ -224,9 +224,11 @@ class Training
      * @param \Nuscly\FormationBundle\Entity\StateRequest $stateRequests
      * @return Training
      */
-    public function addStateRequest(\Nuscly\FormationBundle\Entity\StateRequest $stateRequests)
+    public function addStateRequest(\Nuscly\FormationBundle\Entity\StateRequest $stateRequest)
     {
-        $this->stateRequests[] = $stateRequests;
+        $stateRequest->setTraining($this);
+
+        $this->stateRequests->add($stateRequest);
 
         return $this;
     }
@@ -236,9 +238,9 @@ class Training
      *
      * @param \Nuscly\FormationBundle\Entity\StateRequest $stateRequests
      */
-    public function removeStateRequest(\Nuscly\FormationBundle\Entity\StateRequest $stateRequests)
+    public function removeStateRequest(\Nuscly\FormationBundle\Entity\StateRequest $stateRequest)
     {
-        $this->stateRequests->removeElement($stateRequests);
+        $this->stateRequests->removeElement($stateRequest);
     }
 
     /**

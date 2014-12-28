@@ -36,7 +36,7 @@ class StateRequest
     private $comment;
 
     /**
-     * @ORM\OneToOne(targetEntity="State")
+     * @ORM\ManyToOne(targetEntity="State")
      * @ORM\JoinColumn(name="state_id", referencedColumnName="id")
      **/
     private $state;
@@ -44,7 +44,7 @@ class StateRequest
 
     /**
      * @ORM\ManyToOne(targetEntity="Training", inversedBy="stateRequests")
-     * @ORM\JoinColumn(name="training_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="training_id", referencedColumnName="id", nullable=false)
      **/
     private $training;
 

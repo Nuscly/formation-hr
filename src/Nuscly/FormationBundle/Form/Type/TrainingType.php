@@ -28,6 +28,7 @@ class TrainingType extends AbstractType
                 'sub_widget_col'     => 9,
                 'button_col'         => 3,
                 'prototype_name'     => 'inlinep',
+                'by_reference'       => false,
                 'options'            => array()
                 )
             );

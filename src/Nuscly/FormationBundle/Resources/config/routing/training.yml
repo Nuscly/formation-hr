@@ -15,6 +15,10 @@ training_new:
     pattern:  /new
     defaults: { _controller: "FormationBundle:Training:new" }
 
+training_test:
+    pattern:  /test
+    defaults: { _controller: "FormationBundle:Training:test" }
+
 training_create:
     pattern:  /create
     defaults: { _controller: "FormationBundle:Training:create" }

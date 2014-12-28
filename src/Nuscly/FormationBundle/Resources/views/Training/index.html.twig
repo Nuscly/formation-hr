@@ -46,7 +46,7 @@
             {% for training in paginator %}
                 <tr>
                     <td><a href="{{ path('training_show', {id: training.id}) }}">{{ training.id }}</a></td>
-                    <td>{{ training.employee.department.fullName }}</td>
+                    <td>{% if training.employee and training.employee.department %}{{ training.employee.department.fullName }}{% endif %}</td>
                     <td>{{ training.employee }}</td>
                     <td>{{ training.title }}</td>
                     <td>{{ training.domain }}</td>
