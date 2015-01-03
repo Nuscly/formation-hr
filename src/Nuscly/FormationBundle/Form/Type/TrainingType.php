@@ -30,11 +30,11 @@ class TrainingType extends AbstractType
                 'button_col'         => 3,
                 'prototype_name'     => 'inlinep',
                 'by_reference'       => false,
-                'options'            => array()
+                'label'            =>  'Requests'
                 )
             )
-            ->add('stateTrainings', 'bootstrap_collection', array(
-                'type'               => new StateTrainingType(),
+            ->add('trainingSessions', 'bootstrap_collection', array(
+                'type'               => new TrainingSessionType(),
                 'allow_add'          => true,
                 'allow_delete'       => true,
                 'sub_widget_col'     => 9,
@@ -52,7 +52,8 @@ class TrainingType extends AbstractType
                     'button_col'         => 3,
                     'prototype_name'     => 'inlinep',
                     'by_reference'       => false,
-                    'options'            => array()
+                    'options'            => array(),
+                    'label'            =>  'Training plans'
                 )
             );
 

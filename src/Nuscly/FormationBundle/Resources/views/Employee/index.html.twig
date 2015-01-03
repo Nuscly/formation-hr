@@ -31,6 +31,7 @@
                 <th scope="col">{{ thead('employee', 'id', 'Id') }}</th>
                 <th scope="col">{{ thead('employee', 'name', 'Name') }}</th>
                 <th scope="col">{{ thead('employee', 'surname', 'Surname') }}</th>
+                <th scope="col">{{ thead('employee', 'department', 'Department') }}</th>
                 <th scope="col">{{ thead('employee', 'arrivalDate', 'Arrivaldate') }}</th>
                 <th scope="col">{{ thead('employee', 'arrivalReason', 'Arrivalreason') }}</th>
                 <th scope="col">{{ thead('employee', 'trainings', 'Trainings') }}</th>
@@ -43,6 +44,10 @@
                     <td><a href="{{ path('employee_show', {id: employee.id}) }}">{{ employee.id }}</a></td>
                     <td>{{ employee.name }}</td>
                     <td>{{ employee.surname }}</td>
+                    <td>{% if employee.department %}
+                            {{ employee.department }}
+                        {% endif %}
+                    </td>
                     <td>{% if employee.arrivalDate %}{{ employee.arrivalDate|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ employee.arrivalReason }}</td>
                     <td>

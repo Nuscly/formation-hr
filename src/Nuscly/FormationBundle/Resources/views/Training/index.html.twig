@@ -35,7 +35,7 @@
                 <th scope="col">{{ thead('training', 'domain', 'Domain') }}</th>
                 <th scope="col">{{ thead('training', 'organization', 'Organization') }}</th>
                 <th scope="col">{{ thead('training', 'stateRequest', 'State request') }}</th>
-                <th scope="col">{{ thead('training', 'stateTraining', 'State training') }}</th>
+                <th scope="col">{{ thead('training', 'trainingSession', 'Training session') }}</th>
                 <th scope="col">{{ thead('training', 'statePlan', 'State Plan') }}</th>
                 <th scope="col">{{ thead('training', 'nextRetraining', 'Next Retraining') }}</th>
                 <th scope="col">{{ thead('training', 'deadline', 'Deadline') }}</th>
@@ -62,9 +62,10 @@
                     </td>
                     <td>
                         <ul>
-                            {% for stateTraining in training.stateTrainings %}
+                            {% for trainingSession in training.trainingSessions %}
                                 <li>
-                                    {{ stateTraining }}
+                                    {{ trainingSession.state.name}}
+                                    {% if trainingSession.date %}{{ trainingSession.date|date('Y-m-d') }}{% endif %}
                                 </li>
                             {% endfor %}
                         </ul>
@@ -78,8 +79,8 @@
                             {% endfor %}
                         </ul>
                     </td>
-                    <td>{% if training.nextRetraining %}{{ training.nextRetraining|date('Y-m-d H:i:s') }}{% endif %}</td>
-                    <td>{% if training.deadline %}{{ training.deadline|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if training.nextRetraining %}{{ training.nextRetraining|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if training.deadline %}{{ training.deadline|date('Y-m-d') }}{% endif %}</td>
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-default btn-sm" href="{{ path('training_show', {id: training.id}) }}">

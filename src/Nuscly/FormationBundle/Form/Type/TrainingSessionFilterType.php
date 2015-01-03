@@ -14,11 +14,14 @@ class TrainingSessionFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        
+            ->add('state', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\State'))
+            ->add('date', 'filter_date')
+            ->add('comment', 'filter_text')
             ->add('numberOfDays', 'filter_text')
-            ->add('trainingEvents', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\TrainingEvent'))
-            ->add('trainingMonitoring', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\TrainingMonitoring'))
+           // ->add('trainingEvents', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\TrainingEvent'))
+           // ->add('trainingMonitoring', 'filter_entity', array('class' => 'Nuscly\FormationBundle\Entity\TrainingMonitoring'))
         ;
+
     }
 
     /**

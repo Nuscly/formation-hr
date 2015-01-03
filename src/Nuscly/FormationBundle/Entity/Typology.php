@@ -135,4 +135,9 @@ class Typology
     {
         return $this->trainings;
     }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }

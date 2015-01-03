@@ -62,10 +62,10 @@ class Training
      **/
     private $stateRequests;
     /**
-     * @ORM\OneToMany(targetEntity="StateTraining", mappedBy="training", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="TrainingSession", mappedBy="training", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"date" = "ASC"})
      **/
-    private $stateTrainings;
+    private $trainingSessions;
     /**
      * @ORM\OneToMany(targetEntity="StatePlan", mappedBy="training", cascade={"persist", "remove"}, orphanRemoval=true)
      * @ORM\OrderBy({"date" = "ASC"})
@@ -256,14 +256,14 @@ class Training
     /**
      * Add stateTrainings
      *
-     * @param \Nuscly\FormationBundle\Entity\StateTraining $stateTrainings
+     * @param \Nuscly\FormationBundle\Entity\TrainingSession $trainingSession
      * @return Training
      */
-    public function addStateTraining(\Nuscly\FormationBundle\Entity\StateTraining $stateTraining)
+    public function addTrainingSession(\Nuscly\FormationBundle\Entity\TrainingSession $trainingSession)
     {
-        $stateTraining->setTraining($this);
+        $trainingSession->setTraining($this);
 
-        $this->stateTrainings->add($stateTraining);
+        $this->trainingSessions->add($trainingSession);
 
         return $this;
     }
@@ -271,11 +271,11 @@ class Training
     /**
      * Remove stateTrainings
      *
-     * @param \Nuscly\FormationBundle\Entity\StateTraining $stateTrainings
+     * @param \Nuscly\FormationBundle\Entity\TrainingSession $trainingSession
      */
-    public function removeStateTraining(\Nuscly\FormationBundle\Entity\StateTraining $stateTraining)
+    public function removeTrainingSession(\Nuscly\FormationBundle\Entity\TrainingSession $trainingSession)
     {
-        $this->stateTrainings->removeElement($stateTraining);
+        $this->trainingSessions->removeElement($trainingSession);
     }
 
     /**
@@ -283,9 +283,9 @@ class Training
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getStateTrainings()
+    public function getTrainingSessions()
     {
-        return $this->stateTrainings;
+        return $this->trainingSessions;
     }
 
     /**

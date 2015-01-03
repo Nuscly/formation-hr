@@ -29,7 +29,15 @@
         <thead>
             <tr>
                 <th scope="col">{{ thead('trainingsession', 'id', 'Id') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'department', 'Department') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'employee', 'Employee') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'title', 'Title') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'domain', 'Domain') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'organization', 'Organization') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'state', 'State') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'monitoring', 'Monitoring') }}</th>
                 <th scope="col">{{ thead('trainingsession', 'numberOfDays', 'Numberofdays') }}</th>
+                <th scope="col">{{ thead('trainingsession', 'price', 'Price') }}</th>
                 <th scope="col">{{ 'Actions'|trans({}, 'admin') }}</th>
             </tr>
         </thead>
@@ -37,7 +45,28 @@
             {% for trainingsession in paginator %}
                 <tr>
                     <td><a href="{{ path('training-session_show', {id: trainingsession.id}) }}">{{ trainingsession.id }}</a></td>
+                    <td>{% if trainingsession.training.employee and trainingsession.training.employee.department %}
+                            {{ trainingsession.training.employee.department.fullName }}
+                        {% endif %}
+                    </td>
+                    <td>{{ trainingsession.training.employee }}</td>
+                    <td>{{ trainingsession.training.title }}</td>
+                    <td>{{ trainingsession.training.domain }}</td>
+                    <td>{{ trainingsession.training.organization }}</td>
+                    <td>{{ trainingsession.state.name }}</td>
+                    <td>
+                        {% if trainingsession.trainingMonitoring %}
+                            <ul>
+                                {% if trainingsession.trainingMonitoring.inscription %}
+                                <li>
+                                    Inscription
+                                </li>
+                                {% endif %}
+                            </ul>
+                        {% endif %}
+                    </td>
                     <td>{{ trainingsession.numberOfDays }}</td>
+                    <td>{{ trainingsession.price }}</td>
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-default btn-sm" href="{{ path('training-session_show', {id: trainingsession.id}) }}">

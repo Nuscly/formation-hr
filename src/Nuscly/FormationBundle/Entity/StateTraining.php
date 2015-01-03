@@ -42,13 +42,6 @@ class StateTraining
     private $state;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Training", inversedBy="stateTrainings")
-     * @ORM\JoinColumn(name="training_id", referencedColumnName="id", nullable=false)
-     **/
-    private $training;
-
-
-    /**
      * Get id
      *
      * @return integer 
@@ -127,28 +120,6 @@ class StateTraining
         return $this->state;
     }
 
-    /**
-     * Set training
-     *
-     * @param \Nuscly\FormationBundle\Entity\Training $training
-     * @return StateTraining
-     */
-    public function setTraining(\Nuscly\FormationBundle\Entity\Training $training = null)
-    {
-        $this->training = $training;
-
-        return $this;
-    }
-
-    /**
-     * Get training
-     *
-     * @return \Nuscly\FormationBundle\Entity\Training 
-     */
-    public function getTraining()
-    {
-        return $this->training;
-    }
 
     public function __toString()
     {

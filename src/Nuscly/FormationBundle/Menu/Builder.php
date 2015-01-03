@@ -22,8 +22,8 @@ class Builder extends ContainerAware
         $menu->addChild('Departments', array('route' => 'department'));
         $menu->addChild('Employees', array('route' => 'employee'));
         $menu->addChild('Trainings', array('route' => 'training'));
-        $menu->addChild('Trainings plan', array('route' => 'training-plan'));
         $menu->addChild('Trainings session', array('route' => 'training-session'));
+        $menu->addChild('Trainings plan', array('route' => 'training-plan'));
         $menu->addChild('Organization', array('route' => 'organization'));
         /*
         $menu->addChild('About Me', array(

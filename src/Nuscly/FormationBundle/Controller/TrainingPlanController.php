@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Nuscly\FormationBundle\Entity\TrainingPlan;
-use Nuscly\FormationBundle\Form\Type\TrainingPlanType;
+use Nuscly\FormationBundle\Form\Type\TrainingMonitoringType;
 use Nuscly\FormationBundle\Form\Type\TrainingPlanFilterType;
 use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\QueryBuilder;
@@ -56,7 +56,7 @@ class TrainingPlanController extends Controller
     public function newAction()
     {
         $trainingplan = new TrainingPlan();
-        $form = $this->createForm(new TrainingPlanType(), $trainingplan);
+        $form = $this->createForm(new TrainingMonitoringType(), $trainingplan);
 
         return $this->render('FormationBundle:TrainingPlan:new.html.twig', array(
             'trainingplan' => $trainingplan,
@@ -71,7 +71,7 @@ class TrainingPlanController extends Controller
     public function createAction(Request $request)
     {
         $trainingplan = new TrainingPlan();
-        $form = $this->createForm(new TrainingPlanType(), $trainingplan);
+        $form = $this->createForm(new TrainingMonitoringType(), $trainingplan);
         if ($form->handleRequest($request)->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($trainingplan);
@@ -92,7 +92,7 @@ class TrainingPlanController extends Controller
      */
     public function editAction(TrainingPlan $trainingplan)
     {
-        $editForm = $this->createForm(new TrainingPlanType(), $trainingplan, array(
+        $editForm = $this->createForm(new TrainingMonitoringType(), $trainingplan, array(
             'action' => $this->generateUrl('training-plan_update', array('id' => $trainingplan->getid())),
             'method' => 'PUT',
         ));
@@ -111,7 +111,7 @@ class TrainingPlanController extends Controller
      */
     public function updateAction(TrainingPlan $trainingplan, Request $request)
     {
-        $editForm = $this->createForm(new TrainingPlanType(), $trainingplan, array(
+        $editForm = $this->createForm(new TrainingMonitoringType(), $trainingplan, array(
             'action' => $this->generateUrl('training-plan_update', array('id' => $trainingplan->getid())),
             'method' => 'PUT',
         ));

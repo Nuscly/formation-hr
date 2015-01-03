@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TrainingSessionType extends AbstractType
+class TrainingMonitoringType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -14,15 +14,21 @@ class TrainingSessionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('state')
-            ->add('date')
-            ->add('comment')
-            ->add('numberOfDays', 'number')
-            ->add('price', 'money')
-            //->add('trainingEvents')
-            ->add('trainingMonitoring', new TrainingMonitoringType())
-        ;
+            ->add('inscription', 'checkbox', array(
+                'required' => false,
+            ))
+            ->add('confirmation', 'checkbox', array(
+                'required' => false,
+            ))
+            ->add('convocation', 'checkbox', array(
+                'required' => false,
+            ))
+            ->add('certificate', 'checkbox', array(
+                'required' => false,
+            ));
     }
+
+
 
     /**
      * {@inheritdoc}
@@ -30,7 +36,7 @@ class TrainingSessionType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Nuscly\FormationBundle\Entity\TrainingSession',
+            'data_class' => 'Nuscly\FormationBundle\Entity\TrainingMonitoring',
         ));
     }
 
@@ -39,6 +45,6 @@ class TrainingSessionType extends AbstractType
      */
     public function getName()
     {
-        return 'trainingsession';
+        return 'trainingmonitoring';
     }
 }
